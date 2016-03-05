@@ -2,7 +2,7 @@ import app from '../../app';
 import states from '../myInfo/states';
 
 
-app.controller('respondentInfoController',ng(function($state, caseData, db){
+app.controller('respondentInfoController',ng(function($state, $stateParams, caseData, db){
   this.data = caseData.respondentInfo || (caseData.respondentInfo = {});
 
   this.save = () => {
@@ -10,7 +10,7 @@ app.controller('respondentInfoController',ng(function($state, caseData, db){
   }
 
   this.saveAndNext = () => {
-    this.save().then(() => $state.go('nav.case'))
+    this.save().then(() => $state.go('nav.case', $stateParams))
   }
 
   this.fields = [

@@ -1,5 +1,6 @@
 import app from '../../app'
 
-app.controller('caseController', ng(function (caseData) {
+app.controller('caseController', ng(function ($stateParams, caseData) {
+  this.$stateParams = $stateParams
   this.caseData = caseData
 }))

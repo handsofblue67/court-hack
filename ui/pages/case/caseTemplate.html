@@ -3,8 +3,11 @@
   <pre>
     {{::vm.caseData}}
   </pre>
-  <div>
-    <md-button class="md-raised md-primary" ui-sref="nav.application.myInfo">Back to application</md-button>
+  <div layout="column">
+    <md-button
+      class="md-raised md-primary"
+      ui-sref="nav.application.myInfo({id: vm.$stateParams.id})">Back to application</md-button>
+    <md-button class="md-raised md-primary" ng-href="">Download PDF</md-button>
   </div>
 
 </md-content>
