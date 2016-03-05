@@ -1,0 +1,10 @@
+{
+  "mongo": {
+    "host": "localhost",
+    "port": "27017"
+  },
+  "facebook": {
+    "clientID": "< add client id >",
+    "clientSecret": "< add client secret >"
+  }
+}

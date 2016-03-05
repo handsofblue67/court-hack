@@ -9,14 +9,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-MongoClient.connect("mongodb://localhost:27017/ror", function(err, db){
-    if (!err) { console.log('connected to mongo'); }
+var config = require('./config.json')
 
+var mongoPath = ["mongodb://", config.mongo.host, ":", config.mongo.port, "/ror"].join('')
+MongoClient.connect(mongoPath, function(err, db){
+    if (!err) { console.log('connected to mongo'); }
 });
 
 passport.use(new FacebookStrategy({
-        clientID: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
+        clientID: config.facebook.clientID,
+        clientSecret: config.facebook.clientSecret,
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
