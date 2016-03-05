@@ -8,10 +8,15 @@ module.exports = {
     },
     module: {
         loaders: [
+          { test: /\.html$/, loader: 'html-loader' },
           {
             test: /\.js$/,
             exclude: [/vendors/, /node_modules/],
-            loaders: ['babel-loader', 'jshint-loader']
+            loaders: [
+              'nginjector-loader',
+              'babel-loader',
+              'jshint-loader'
+            ]
           },
         ]
     },
