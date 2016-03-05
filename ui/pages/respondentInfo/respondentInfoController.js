@@ -5,6 +5,7 @@ import states from '../myInfo/states';
 app.controller('respondentInfoController',ng(function(){
 
   this.respondentInfo = {};
+  this.respondentInfo2 = {};
 
   this.respondentInfoFields = [
     {
@@ -16,7 +17,7 @@ app.controller('respondentInfoController',ng(function(){
           key:'respondentFName',
           type:'input',
           templateOptions: {
-            label: 'Respondent\'s First Name',
+            label: 'Offneder\'s First Name',
             placeholder: "First Name"
           },
           elementAttributes: {
@@ -28,7 +29,7 @@ app.controller('respondentInfoController',ng(function(){
           type: 'input',
           templateOptions: {
             required: true,
-            label: 'Respondent\'s Last Name',
+            label: 'Offender\'s Last Name',
             placeholder: 'Last Name'
           },
           elementAttributes: {
@@ -47,7 +48,7 @@ app.controller('respondentInfoController',ng(function(){
           key: 'respondentOtherNames1',
           type: 'input',
           templateOptions: {
-            label: 'Respondent\'s Nick Name',
+            label: 'Offender\'s Nick Name',
             placeholder: 'Nick Name 1'
           },
           elementAttributes: {
@@ -333,7 +334,9 @@ app.controller('respondentInfoController',ng(function(){
         {
           key: 'respondentVehicleMake',
           type: 'select',
+          wrapper : ['divider'],
           templateOptions: {
+
             label: 'Respondent\'s Car Does Not Make',
             options: [
               {
@@ -372,10 +375,12 @@ app.controller('respondentInfoController',ng(function(){
           }
         },
 
+
         {
           key: 'respondentVehicleColor1',
           type: 'select',
           templateOptions: {
+
             label: 'Respondent\'s Car Color',
             options: [
               {
@@ -414,9 +419,52 @@ app.controller('respondentInfoController',ng(function(){
           }
         }
       ]
+    },
 
+    {
+      elementAttributes: {
+        layout: 'row'
+      },
+      fieldGroup: [
+        {
+          key: 'respondentOtherLocationName1',
+          type: 'input',
+          templateOptions:{
+            label: 'Please enter another location the offender frequents',
+            placeholder: 'other location he/she may live',
+
+          }
+        },
+        {
+          key: 'respondentOtherLocationType1',
+          type: 'input',
+          templateOptions: {
+            label: 'Description of the other location the offender frequents'
+          }
+        }
+      ]
+    },
+
+    {
+      elementAttributes: {
+        layout: 'row'
+      },
+      fieldGroup: [
+        {
+          key: 'respondentOtherLocationTimes1',
+          type: 'input',
+          templateOptions:{
+            label: 'Enter times the offender might possibly be at this location',
+
+          }
+        }
+      ]
     }
+
+
+
   ];
+
 }));
 /*
  { name:respondentFName, x:40, y:364, page:0}, DONE
@@ -440,7 +488,7 @@ app.controller('respondentInfoController',ng(function(){
  { name:respondentDistinguishingFeatures2, x:300, y:282, page:0},DONE
  { name:respondentDriversLicenseState, x:445, y:273, page:0},DONE
  { name:respondentDriversLicenseState, x:522, y:273, page:0},DONE
- { name:respondentOtherLocationName1, x:40, y:178, page:0},
+ { name:respondentOtherLocationName1, x:40, y:178, page:0},DONE
  { name:respondentOtherLocationType1, x:252, y:178, page:0},
  { name:respondentOtherLocationTimes1, x:382, y:178, page:0},
  { name:respondentOtherLocationPhone1, x:500, y:178, page:0},
