@@ -1,3 +1,4 @@
+
 var express = require('express');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -9,7 +10,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 MongoClient.connect("mongodb://localhost:27017/ror", function(err, db){
-    if (!err) { console.log("connected to mongo"); }
+    if (!err) { console.log('connected to mongo'); }
 
 });
 
@@ -41,38 +42,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
 app.use('/users', users);
-
-/* GET home page. */
-app.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-app.get('/api/login', function(req, res){
-   res.json('{ req: req.user }')
-});
-
-app.get('api/login/facebook',
-    passport.authenticate('facebook', { scope: ['public_profile', 'email',
-        'user_about_me', 'user_birthday', 'user_location', 'user_photos'
-    ]})
-);
-
-app.get('/api/login/google/return',
-    passport.authenticate('google', { failureRedirect: '/api/login' }),
-    function(req, res) {
-        res.redirect('/');
-    }
-);
-
-app.get('/api/profile',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function(req, res) {
-        res.render('profile', {user: req.user});
-    }
-);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

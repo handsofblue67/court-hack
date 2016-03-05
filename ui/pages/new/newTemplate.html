@@ -3,7 +3,7 @@
     File a secure restraining order
   </md-card-header>
   <md-card-content>
-    <md-button class="md-raised md-primary" ng-click="vm.loginWithFacebook()">Login with facebook</md-button>
+    <md-button class="md-raised md-primary" href="/api/login/facebook">Login with facebook</md-button>
     <formly-form model="vm.data" fields="vm.fields">
       <md-button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</md-button>
     </formly-form>

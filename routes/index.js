@@ -12,7 +12,7 @@ router.get('/api/login', function(req, res){
     res.json('{ req: req.user }')
 });
 
-router.get('api/login/facebook',
+router.get('/api/login/facebook',
     passport.authenticate('facebook', { scope: ['public_profile', 'email',
         'user_about_me', 'user_birthday', 'user_location', 'user_photos'
     ]})
