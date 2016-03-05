@@ -1,0 +1,22 @@
+{
+  "name": "court-hack",
+  "version": "1.0.0",
+  "description": "improved restraining order request system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handsofblue67/court-hack.git"
+  },
+  "author": "aglets",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/handsofblue67/court-hack/issues"
+  },
+  "homepage": "https://github.com/handsofblue67/court-hack#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
