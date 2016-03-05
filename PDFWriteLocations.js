@@ -78,7 +78,7 @@ var PDFWriteLocations = {
     respondentDistinguishingFeatures1: {x: 300, y: 297, page: 0},
     respondentDistinguishingFeatures2: {x: 300, y: 282, page: 0},
     respondentDriversLicenseState: {x: 445, y: 273, page: 0},
-    respondentDriversLicenseState: {x: 522, y: 273, page: 0},
+    respondentDriversLicenseExpires: {x: 522, y: 273, page: 0},
     respondentOtherLocationName1: {x: 40, y: 178, page: 0},
     respondentOtherLocationType1: {x: 252, y: 178, page: 0},
     respondentOtherLocationTimes1: {x: 382, y: 178, page: 0},
