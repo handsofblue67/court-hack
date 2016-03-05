@@ -44,8 +44,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
+
+var router  = express.Router()
+
+app.use('/api', routes);
 app.use('/users', users);
+
+router.get('/app/*', function(req, res) {
+  res.sendFile('index.html', {
+    root: __dirname + '/public/'
+  });
+});
+
+router.get('/app', function(req, res) {
+  res.redirect('/app/')
+})
+
+router.get('/', function(req, res) {
+  res.redirect('/app/')
+})
+
+app.use(router)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
