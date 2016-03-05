@@ -1,8 +1,16 @@
 import app from '../../app';
 import states from './states';
 
-app.controller('myInfoController', ng(function($state) {
-  this.myInfo = {};
+app.controller('myInfoController', ng(function($state, caseData, db) {
+  this.data = caseData.myInfo || (caseData.myInfo = {});
+
+  this.save = () => {
+    return db.saveCase(caseData)
+  }
+
+  this.saveAndNext = () => {
+    this.save().then(() => $state.go('nav.application.respondentInfo'))
+  }
 
   let wrapRow = (els) => {
     return {
@@ -196,7 +204,7 @@ app.controller('myInfoController', ng(function($state) {
     }
   }
 
-  this.myInfoFields = [
+  this.fields = [
     wrapRow([firstName, middleName, lastName, suffix]),
     wrapRow([gender, birthdate]),
     wrapRow([ssn, email]),
@@ -205,8 +213,4 @@ app.controller('myInfoController', ng(function($state) {
     wrapRow([employerName, employerStrAddr]),
     wrapRow([employerCity, employerState, employerZip]),
   ]
-
-  this.next = () => {
-    $state.go('somewhere')
-  }
 }));

@@ -8,6 +8,8 @@ import newTemplate from "./pages/new/newTemplate.html"
 import newController from "./pages/new/newController"
 import resumeTemplate from "./pages/resume/resumeTemplate.html"
 import resumeController from "./pages/resume/resumeController"
+import caseTemplate from "./pages/case/caseTemplate.html"
+import caseController from "./pages/case/caseController"
 
 import applicationTemplate from "./pages/application/applicationTemplate.html"
 import applicationSideBarTemplate from "./pages/application/applicationSideBarTemplate.html"
@@ -16,6 +18,8 @@ import myInfoController from "./pages/myInfo/myInfoController"
 import respondentInfoTemplate from "./pages/respondentInfo/respondentInfoTemplate.html"
 import respondentInfoController from "./pages/respondentInfo/respondentInfoController"
 
+
+import './services/db'
 
 app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
   $stateProvider
@@ -43,9 +47,20 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
     })
 
     // Form routes
+    .state('nav.case', {
+      url: '/case/{id}',
+      template: caseTemplate,
+      controller: 'caseController as vm',
+      resolve: {
+        caseData: ng((db, $stateParams) => db.getCase($stateParams.id))
+      }
+    })
     .state('nav.application', {
-      url: '/order',
+      url: '/case/{id}/form',
       abstract: true,
+      resolve: {
+        caseData: ng((db, $stateParams) => db.getCase($stateParams.id))
+      },
       views: {
         '': { template: applicationTemplate },
         sidebar: { template: applicationSideBarTemplate }

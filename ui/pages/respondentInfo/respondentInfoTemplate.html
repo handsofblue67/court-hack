@@ -1,10 +1,11 @@
 <md-card>
     <md-card-header>
-        Now Enter Information for the Respondent
+        Please tell us about the offender
     </md-card-header>
     <md-card-content>
-        <formly-form model="vm.respondentInfo" fields="vm.respondentInfoFields">
-            <md-button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</md-button>
+        <formly-form model="vm.data" fields="vm.fields">
+          <md-button type="button" class="md-raised md-primary" ng-click="vm.save()">Save</md-button>
+          <md-button type="submit" class="md-raised md-primary" ng-click="vm.saveAndNext()">Save and Next</md-button>
         </formly-form>
 
     </md-card-content>

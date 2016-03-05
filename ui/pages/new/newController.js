@@ -1,24 +1,16 @@
 import app from '../../app'
 
-app.controller('newController', ng(function ($http) {
-  this.data = {}
+app.controller('newController', ng(function ($state, db) {
 
-  this.fields = [
-    {
-      key: 'email',
-      type: 'input',
-      templateOptions: {
-        type: 'email',
-        label: 'Email address',
-        placeholder: 'Enter email'
-      }
-    }
-  ]
-
-  this.loginWithFacebook = () => {
-    $http.get('/api/login/facebook').then((data) => {
-      console.log(data);
+  this.beginManualEntry = () => {
+    db.saveCase({}).then((data) => {
+      let id = 1 // TODO get id from data
+      $state.go('nav.application.myInfo', {id})
     })
+  }
+
+  this.beginWithFacebook = () => {
+    alert("Sorry, this feature didn't make it...")
   }
 
 }))

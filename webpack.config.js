@@ -21,6 +21,6 @@ module.exports = {
         ]
     },
 
-    jshint: jshintrc
-
+    jshint: jshintrc,
+    devtool: 'source-map',
 };

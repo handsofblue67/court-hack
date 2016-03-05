@@ -2,12 +2,18 @@ import app from '../../app';
 import states from '../myInfo/states';
 
 
-app.controller('respondentInfoController',ng(function(){
+app.controller('respondentInfoController',ng(function($state, caseData, db){
+  this.data = caseData.respondentInfo || (caseData.respondentInfo = {});
 
-  this.respondentInfo = {};
-  this.respondentInfo2 = {};
+  this.save = () => {
+    return db.saveCase(caseData)
+  }
 
-  this.respondentInfoFields = [
+  this.saveAndNext = () => {
+    this.save().then(() => $state.go('nav.case'))
+  }
+
+  this.fields = [
     {
       elementAttributes: {
         layout: 'row'
