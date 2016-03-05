@@ -9,6 +9,7 @@ import newController from "./pages/new/newController"
 import resumeTemplate from "./pages/resume/resumeTemplate.html"
 import resumeController from "./pages/resume/resumeController"
 
+import applicationTemplate from "./pages/application/applicationTemplate.html"
 import applicationSideBarTemplate from "./pages/application/applicationSideBarTemplate.html"
 import myInfoTemplate from "./pages/myInfo/myInfoTemplate.html"
 import myInfoController from "./pages/myInfo/myInfoController"
@@ -44,7 +45,7 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
       url: '/order',
       abstract: true,
       views: {
-        '': { template: '<ui-view>' },
+        '': { template: applicationTemplate },
         sidebar: { template: applicationSideBarTemplate }
       }
     })

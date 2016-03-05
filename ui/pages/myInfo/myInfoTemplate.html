@@ -3,8 +3,9 @@
     File a secure restraining order
   </md-card-header>
   <md-card-content>
+    <p>Please tell use about yourself</p>
     <formly-form model="vm.myInfo" fields="vm.myInfoFields">
-      <md-button type="submit" class="btn btn-default" ng-click="vm.submit(vm.user)">Submit</md-button>
+      <md-button type="submit" class="md-raised md-primary" ng-click="vm.next()">Next</md-button>
     </formly-form>
   </md-card-content>
   <md-card-actions layout="column">

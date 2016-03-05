@@ -1,7 +1,7 @@
 <div layout="column">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()">
+      <md-button hide-gt-xs class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()">
         <md-icon md-svg-icon="/assets/img/ic_menu_black_24px.svg"></md-icon>
       </md-button>
       <h2>
@@ -9,13 +9,6 @@
           <span>Court Hack!</span>
         </a>
       </h2>
-      <!-- <span flex></span> -->
-      <!-- <md-button class="md-icon-button" aria-label="Favorite">
-        <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="More">
-        <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-      </md-button> -->
     </div>
   </md-toolbar>
 
@@ -23,6 +16,9 @@
     <md-list layout="column">
       <md-list-item>
         <md-button flex ui-sref="nav.index">Home</md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button flex ui-sref="nav.new">New Application</md-button>
       </md-list-item>
       <md-list-item>
         <md-button flex ui-sref="nav.resume">Resume Application</md-button>
