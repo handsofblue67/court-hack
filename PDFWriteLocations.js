@@ -1,9 +1,5 @@
 var hummus = require('hummus');
 
-
-
-
-
 var PDFValueMerge = function(obj1, obj2)
 {
     for(var p in obj1)
@@ -12,15 +8,21 @@ var PDFValueMerge = function(obj1, obj2)
     }
 };
 
-var WritePDF = function(valueMapping, dataValues, formPath, formPage){
-    PDFValueMerge(valueMapping, dataValues);
-    var pdfWriter = hummus.createWriterToModify(formPath, {
-        modifiedFilePath: __dirname + '/BasicJPGImagesTestPageModified.pdf'
-    });
-    var pageModifier = new hummus.PDFPageModifier(pdfWriter,formPage);
+router.get('/api/pendingForms', function(req, res, next) {
+    //WritePDF(PDFWriteLocations, req.values, '/FORMS/01_Request_For_Protective_Order.pdf', 0);
+
+    PDFValueMerge(req.)
+
+    res.writeHead(200, {'Content-Type': 'application/pdf'});
+
+    var pdfWriter = hummus.createWriterToModify(
+        new hummus.PDFRStreamForFile('/FORMS/01_Request_For_Protective_Order.pdf'),
+        new hummus.PDFStreamForResponse(res));
+    /** use pdfwriter to write pdf content **/
+    var pageModifier = new hummus.PDFPageModifier(pdfWriter, formPage);
     var pageModifierContext = pageModifier.startContext().getContext();
 
-    for(var p in valueMapping) {
+    for (var p in valueMapping) {
         pageModifierContext.writeText(
             valueMapping[p].value,
             valueMapping[p].x, valueMapping[p].y,
@@ -30,8 +32,39 @@ var WritePDF = function(valueMapping, dataValues, formPath, formPage){
 
     pageModifier.endContext().writePage();
     pdfWriter.end();
-};
 
+
+    res.end();
+});
+/*
+    var nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+    var transporter = nodemailer.createTransport('smtps://swiftshieldcourthack%40gmail.com:TeamAglet@smtp.gmail.com');
+
+// setup e-mail data with unicode symbols
+    var mailOptions = {
+        from: '"Swift Shield" <swiftshieldcourthack@gmail.com>', // sender address
+        to: 'mark.ryan@live.ca', // list of receivers
+        subject: 'Rapid Restraining Order Request', // Subject line
+        text: 'Please review and file the attached forms.', // plaintext body
+        attachments:[
+            {
+                filename:"Restraining Order Request Form",
+                content:
+            }
+        ]
+    };
+
+// send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
+});
+*/
 var PDFWriteLocations = {
     petitionerFName: {x: 40, y: 570, page: 0},
     petitionerMName: {x: 137, y: 570, page: 0},
