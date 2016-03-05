@@ -18,7 +18,11 @@
   </md-toolbar>
 
   <md-sidenav md-component-id="left" class="md-sidenav-left">
-    Left Nav!
+    <md-list layout="column">
+      <md-list-item>
+        <md-button flex ui-sref="nav.index">Home</md-button>
+      </md-list-item>
+    </md-list>
   </md-sidenav>
   <md-content>
     <ui-view></ui-view>
