@@ -14,22 +14,24 @@ var config = require('./config.json')
 var mongoPath = ["mongodb://", config.mongo.host, ":", config.mongo.port, "/ror"].join('')
 MongoClient.connect(mongoPath, function(err, db){
     if (!err) { console.log('connected to mongo'); }
+
+    db.createCollection('requests', function(err, collection) {console.log('database created')});
 });
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
 passport.use(new FacebookStrategy({
         clientID: config.facebook.clientID,
         clientSecret: config.facebook.clientSecret,
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
+        callbackURL: "http://localhost:3000/api/login/facebook/return"
     },
     function(accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-            return cb(err, user);
-        });
+            console.log(profile);
+            return cb(null, profile);
     }
 ));
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -47,9 +49,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var router  = express.Router()
 
-app.use('/api', routes);
-app.use('/users', users);
-
 router.get('/app/*', function(req, res) {
   res.sendFile('index.html', {
     root: __dirname + '/public/'
@@ -64,7 +63,14 @@ router.get('/', function(req, res) {
   res.redirect('/app/')
 })
 
+
 app.use(router)
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/api', routes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

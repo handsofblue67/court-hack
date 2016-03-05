@@ -27,4 +27,17 @@ router.get('/profile',
     }
 );
 
+router.post('/application', function(req, res, next) {
+    req.body.resume = Math.floor(100000000 + Math.random() * 900000000).toString(16);
+    req.body.status = 'pending';
+    console.log('random re-entry string: ' + req.body.resume);
+    collection.insert(req.body, {w:1}, function(err, result) {console.log('document inserted with ' + err)});
+
+    res.json(req.body);
+});
+
+//router.get('/api/application/:', fuction)
+//GET  /api/application/{ID} - returns document
+//GET  /api/application/{ID}/formName.pdf - downloard PDF of
+
 module.exports = router;
