@@ -1,0 +1,21 @@
+{
+  "asi": true,
+  "browser": true,
+  "esnext": true,
+  "globals": {
+    "ng": true,
+    "Symbol": true,
+    "beforeEach": true,
+    "describe": true,
+    "inject": true,
+    "expect": true,
+    "it": true,
+    "browser": true,
+    "element": true,
+    "by": true
+  },
+  "lastsemic": true,
+  "node": true,
+  "proto": true,
+  "undef": true
+}
