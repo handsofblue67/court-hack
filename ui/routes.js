@@ -10,6 +10,8 @@ import newController from "./pages/new/newController"
 import applicationSideBarTemplate from "./pages/application/applicationSideBarTemplate.html"
 import myInfoTemplate from "./pages/myInfo/myInfoTemplate.html"
 import myInfoController from "./pages/myInfo/myInfoController"
+import respondentInfoTemplate from "./pages/respondentInfo/respondentInfoTemplate.html"
+import respondentInfoController from "./pages/respondentInfo/respondentInfoController"
 
 
 app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
@@ -52,4 +54,9 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
       template: myInfoTemplate,
       controller: 'myInfoController as vm'
     })
-}))
+    .state('nav.application.respondentInfo',{
+      url: '/respondent-info',
+      template:respondentInfoTemplate,
+      controller: 'respondentInfoController as vm'
+    });
+}));
