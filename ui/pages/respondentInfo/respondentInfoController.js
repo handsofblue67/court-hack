@@ -334,7 +334,6 @@ app.controller('respondentInfoController',ng(function(){
         {
           key: 'respondentVehicleMake',
           type: 'select',
-          wrapper : ['divider'],
           templateOptions: {
 
             label: 'Respondent\'s Car Does Not Make',
@@ -459,7 +458,10 @@ app.controller('respondentInfoController',ng(function(){
           }
         }
       ]
-    }
+    },
+
+
+
 
 
 
