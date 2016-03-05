@@ -6,6 +6,8 @@ import indexTemplate from "./pages/index/indexTemplate.html"
 import indexController from "./pages/index/indexController"
 import newTemplate from "./pages/new/newTemplate.html"
 import newController from "./pages/new/newController"
+import resumeTemplate from "./pages/resume/resumeTemplate.html"
+import resumeController from "./pages/resume/resumeController"
 
 import applicationSideBarTemplate from "./pages/application/applicationSideBarTemplate.html"
 import myInfoTemplate from "./pages/myInfo/myInfoTemplate.html"
@@ -31,12 +33,11 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
       template: newTemplate,
       controller: 'newController as vm'
     })
-
-    // .state('nav.continue', {
-    //   url: '/continue',
-    //   template: newTemplate,
-    //   controller: 'newController as vm'
-    // })
+    .state('nav.resume', {
+      url: '/resume',
+      template: resumeTemplate,
+      controller: 'resumeController as vm'
+    })
 
     // Form routes
     .state('nav.application', {

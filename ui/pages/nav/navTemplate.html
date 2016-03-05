@@ -5,7 +5,9 @@
         <md-icon md-svg-icon="public/assets/img/ic_menu_black_24px.svg"></md-icon>
       </md-button>
       <h2>
-        <span>Court Hack!</span>
+        <a ui-sref="nav.index">
+          <span>Court Hack!</span>
+        </a>
       </h2>
       <!-- <span flex></span> -->
       <!-- <md-button class="md-icon-button" aria-label="Favorite">
@@ -21,6 +23,9 @@
     <md-list layout="column">
       <md-list-item>
         <md-button flex ui-sref="nav.index">Home</md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button flex ui-sref="nav.resume">Resume Application</md-button>
       </md-list-item>
     </md-list>
   </md-sidenav>
