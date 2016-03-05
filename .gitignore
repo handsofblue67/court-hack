@@ -35,3 +35,6 @@ node_modules
 
 # Dont add configs!
 config.json
+
+# Dont add vim backups
+*~

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var MongoClient = require('mongodb').MongoClient;
 
 router.get('/login', function(req, res){
     console.log('getgot');
@@ -31,8 +32,12 @@ router.post('/application', function(req, res, next) {
     req.body.resume = Math.floor(100000000 + Math.random() * 900000000).toString(16);
     req.body.status = 'pending';
     console.log('random re-entry string: ' + req.body.resume);
-    collection.insert(req.body, {w:1}, function(err, result) {console.log('document inserted with ' + err)});
 
+    var mongoPath = ["mongodb://", config.mongo.host, ":", config.mongo.port, "/ror"].join('')
+    MongoClient.connect(mongoPath, function(err, db){
+    requests.insert(req.body, {w:1}, function(err, result) {console.log('document inserted with ' + result)});
+
+    console.log(req.body);
     res.json(req.body);
 });
 
