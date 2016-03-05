@@ -6,6 +6,8 @@ import indexTemplate from "./pages/index/indexTemplate.html"
 import indexController from "./pages/index/indexController"
 import newTemplate from "./pages/new/newTemplate.html"
 import newController from "./pages/new/newController"
+
+import applicationSideBarTemplate from "./pages/application/applicationSideBarTemplate.html"
 import myInfoTemplate from "./pages/myInfo/myInfoTemplate.html"
 import myInfoController from "./pages/myInfo/myInfoController"
 
@@ -37,12 +39,15 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
     // })
 
     // Form routes
-    .state('nav.form', {
+    .state('nav.application', {
       url: '/order',
       abstract: true,
-      template: '<ui-view>'
+      views: {
+        '': { template: '<ui-view>' },
+        sidebar: { template: applicationSideBarTemplate }
+      }
     })
-    .state('nav.form.myInfo', {
+    .state('nav.application.myInfo', {
       url: '/my-info',
       template: myInfoTemplate,
       controller: 'myInfoController as vm'

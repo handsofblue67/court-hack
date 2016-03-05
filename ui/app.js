@@ -12,4 +12,8 @@ let app = angular.module('courthack', [
   'formly',
   'formlyMaterial'
 ])
+
+// Store the form data
+app.value('formData', {})
+
 export default app

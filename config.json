@@ -1,0 +1,10 @@
+{
+  "mongo": {
+    "host": "192.168.59.103",
+    "port": "27017"
+  },
+  "facebook": {
+    "clientID": "778459975631084",
+    "clientSecret": "64b120eaa48ce0a76576cbac68c9073f"
+  }
+}
