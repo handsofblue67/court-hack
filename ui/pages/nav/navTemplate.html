@@ -1,0 +1,26 @@
+<div layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()">
+        <md-icon md-svg-icon="public/assets/img/ic_menu_black_24px.svg"></md-icon>
+      </md-button>
+      <h2>
+        <span>Court Hack!</span>
+      </h2>
+      <!-- <span flex></span> -->
+      <!-- <md-button class="md-icon-button" aria-label="Favorite">
+        <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button> -->
+    </div>
+  </md-toolbar>
+
+  <md-sidenav md-component-id="left" class="md-sidenav-left">
+    Left Nav!
+  </md-sidenav>
+  <md-content>
+    <ui-view></ui-view>
+  </md-content>
+</div>
