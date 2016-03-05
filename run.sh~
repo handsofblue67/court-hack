@@ -1,0 +1,2 @@
+#!/bin/bash
+CLIENT_ID=804810155210-bcohl0vg2hkvtf2s8ihn3cqreo831s02.apps.googleusercontent.com CLIENT_SECRET=FGdppj6IB8QNHT_oX9CRStGW node server.js
