@@ -113,6 +113,31 @@ router.get('/application/:id/formName.pdf', function(req, res) {
             if (err) { return console.dir(err); }
             //WritePDF(PDFWriteLocations, req.values, '/FORMS/01_Request_For_Protective_Order.pdf', 0);
 
+            // SUPER HACK
+            var MAP = {
+              firstName: "petitionerFName",
+              middleName: "petitionerMName",
+              lastName: "petitionerLName",
+              homeStreetAddr: "petitionerAddressStreet",
+              birthdate: "petitionerDOB"
+            }
+
+            if (_.has(item, 'myInfo')) {
+              var mapped = _.mapKeys(item.myInfo, function (value, key) {
+                return MAP[key] || key
+              })
+              var cityStateZip = _.chain(item)
+                .pick('homeCity', 'homeState', 'homeZip')
+                .values()
+                .join(', ')
+                .value()
+              mapped['petitionerAddressCityStateZip'] = cityStateZip
+              item = _.extend({}, item, mapped)
+            }
+            // END SUPER HACK
+
+
+
             res.writeHead(200, {'Content-Type': 'application/pdf'});
             var formPath = path.join(__dirname, '../FORMS/01_Request_For_Protective_Order.pdf')
 

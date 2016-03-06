@@ -3,7 +3,7 @@ import states from '../myInfo/states';
 
 
 app.controller('respondentInfoController',ng(function($state, caseData, db){
-  this.data = caseData.respondentInfo || (caseData.respondentInfo = {});
+  this.data = caseData || (caseData = {});
 
   this.save = () => {
     return db.saveCase(caseData)
@@ -315,7 +315,7 @@ app.controller('respondentInfoController',ng(function($state, caseData, db){
 
         },
         {
-          key: 'respondentDistinguishingFeature1',
+          key: 'respondentDistinguishingFeature2',
           type:'input',
           templateOptions: {
             label: 'Other Distinguishing Features',
@@ -338,7 +338,7 @@ app.controller('respondentInfoController',ng(function($state, caseData, db){
           }
         },
         {
-          key: 'respondentVehicleMake',
+          key: 'respondentVehicleMake1',
           type: 'select',
           templateOptions: {
 
