@@ -4,6 +4,8 @@ var passport = require('passport');
 var MongoClient = require('mongodb').MongoClient;
 var config = require('../config.json');
 var hummus = require('hummus');
+var _ = require('lodash');
+var path = require('path');
 
 router.param('id', function(req, res, next, id) {
     req.id = id;
@@ -96,15 +98,7 @@ router.put('/application/:id', function(req, res) {
 });
 
 router.get('/application/:id/formName.pdf', function(req, res) {
-    var PDFWriteLocations = require('PDFWriteLocations');
-
-    var PDFValueMerge = function(obj1, obj2)
-    {
-        for(var p in obj1)
-        {
-            obj1[p][value] = obj2[p];
-        }
-    };
+    var PDFWriteLocations = require('./PDFWriteLocations.json');
 
     var mongoPath = ["mongodb://", config.mongo.host, ":", config.mongo.port, "/ror"].join('');
 
@@ -117,26 +111,44 @@ router.get('/application/:id/formName.pdf', function(req, res) {
         var collection = db.collection('requests');
         collection.findOne({ id:retrieve }, function(err, item) {
             if (err) { return console.dir(err); }
-            PDFValueMerge(PDFWriteLocations, item);
-
             //WritePDF(PDFWriteLocations, req.values, '/FORMS/01_Request_For_Protective_Order.pdf', 0);
 
             res.writeHead(200, {'Content-Type': 'application/pdf'});
+            var formPath = path.join(__dirname, '../FORMS/01_Request_For_Protective_Order.pdf')
 
             var pdfWriter = hummus.createWriterToModify(
-                new hummus.PDFRStreamForFile('/FORMS/01_Request_For_Protective_Order.pdf'),
-                new hummus.PDFStreamForResponse(res));
+              new hummus.PDFRStreamForFile(formPath),
+              new hummus.PDFStreamForResponse(res)
+            )
             /** use pdfwriter to write pdf content **/
-            var pageModifier = new hummus.PDFPageModifier(pdfWriter, formPage);
+            var pageModifier = new hummus.PDFPageModifier(pdfWriter, 0);
             var pageModifierContext = pageModifier.startContext().getContext();
 
-            for (var p in valueMapping) {
-                pageModifierContext.writeText(
-                    valueMapping[p].value,
-                    valueMapping[p].x, valueMapping[p].y,
-                    {font: pdfWriter.getFontForFile('./fonts/arial.ttf'), size: 8, colorspace: 'gray', color: 0x00}
-                );
-            }
+            _.chain(item)
+              .map(function(text, key){
+                var position = PDFWriteLocations[key]
+                return _.extend({}, {text: text}, position)
+              })
+              .forEach(function(value, key) {
+                var text = value.text
+                var x = value.x
+                var y = value.y
+                pageModifierContext.writeText(text, x, y, {
+                  font: pdfWriter.getFontForFile('./fonts/arial.ttf'),
+                  size: 12,
+                  colorspace: 'gray',
+                  color: 0x00
+                })
+              })
+              .value()
+            // for (var p in item) {
+            //   console.log(item[p].value, item[p].x, item[p].y);
+            //     pageModifierContext.writeText(
+            //         item[p].value,
+            //         item[p].x, item[p].y,
+            //         {font: pdfWriter.getFontForFile('./fonts/arial.ttf'), size: 8, colorspace: 'gray', color: 0x00}
+            //     );
+            // }
 
             pageModifier.endContext().writePage();
             pdfWriter.end();
@@ -149,4 +161,3 @@ router.get('/application/:id/formName.pdf', function(req, res) {
 //GET  /api/application/{ID}/formName.pdf - downloard PDF of
 
 module.exports = router;
-

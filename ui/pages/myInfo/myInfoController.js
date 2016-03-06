@@ -9,7 +9,7 @@ app.controller('myInfoController', ng(function($state, caseData, db) {
   }
 
   this.saveAndNext = () => {
-    this.save().then(() => $state.go('nav.application.respondentInfo'))
+    this.save().then(() => $state.go('nav.case.application.respondentInfo'))
   }
 
   let wrapRow = (els) => {

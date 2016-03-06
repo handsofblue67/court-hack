@@ -55,23 +55,23 @@ app.config(ng( ($stateProvider, $urlRouterProvider, $locationProvider) => {
         caseData: ng((db, $stateParams) => db.getCase($stateParams.id))
       }
     })
-    .state('nav.application', {
-      url: '/case/{id}/form',
+    .state('nav.case.application', {
+      url: '/form',
       abstract: true,
       resolve: {
         caseData: ng((db, $stateParams) => db.getCase($stateParams.id))
       },
       views: {
-        '': { template: applicationTemplate },
-        sidebar: { template: applicationSideBarTemplate }
+        '@nav': { template: applicationTemplate },
+        'sidebar@nav': { template: applicationSideBarTemplate }
       }
     })
-    .state('nav.application.myInfo', {
+    .state('nav.case.application.myInfo', {
       url: '/my-info',
       template: myInfoTemplate,
       controller: 'myInfoController as vm'
     })
-    .state('nav.application.respondentInfo',{
+    .state('nav.case.application.respondentInfo',{
       url: '/respondent-info',
       template:respondentInfoTemplate,
       controller: 'respondentInfoController as vm'

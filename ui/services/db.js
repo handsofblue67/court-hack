@@ -6,7 +6,6 @@ app.factory('db', ng(function($window, $http, $q){
   class Database {
 
     constructor (host, port, root='') {
-      this.tempData = {}
       this.root = `${host}:${port}${root}`
     }
 
@@ -14,21 +13,20 @@ app.factory('db', ng(function($window, $http, $q){
       return [`${$window.location.protocol}//`, this.root, path].join('')
     }
 
+    createCase (caseData) {
+      let url = this.createUrl('/application')
+      return $http.post(url, caseData).then(({data}) => data)
+    }
+
     getCase (id) {
-      return $q.when(this.tempData)
-      // let url = this.createUrl('/case', {id})
-      // return $http.get(url).then(({data}) => data)
+      let url = this.createUrl(`/application/${id}`)
+      return $http.get(url).then(({data}) => data)
     }
 
     saveCase (caseData) {
-      this.tempData = _.extend({}, this.tempData, caseData)
-      console.log('Saved:', this.tempData);
-      return $q.when(this.tempData)
-      // let url = this.createUrl('/case')
-      // return $http.post(url, caseData).then((data) => {
-      //   console.log('Save response:', data);
-      //   return data
-      // })
+      let {id} = caseData
+      let url = this.createUrl(`/application/${id}`)
+      return $http.put(url, caseData).then(({data}) => data)
     }
   }
 

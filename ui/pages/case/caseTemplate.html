@@ -6,8 +6,8 @@
   <div layout="column">
     <md-button
       class="md-raised md-primary"
-      ui-sref="nav.application.myInfo({id: vm.$stateParams.id})">Back to application</md-button>
-    <md-button class="md-raised md-primary" ng-href="">Download PDF</md-button>
+      ui-sref="nav.case.application.myInfo">Back to application</md-button>
+    <md-button class="md-raised md-primary" ng-href="/api/application/{{::vm.caseData.id}}/formName.pdf" target="_blank">Download PDF</md-button>
   </div>
 
 </md-content>
